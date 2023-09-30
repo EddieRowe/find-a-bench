@@ -12,8 +12,9 @@
       <div id="main">
         <h1>Find-A-Bench</h1>
         <h2>For weary travellers who need <i>a rest.</i></h2>
-        <br>
-        <p id="loc">Requesting your location...</p>
+        <div id="location">
+            <p id="loc">Requesting your location...</p>
+        </div>
         <p id="benchless"></p>
         <h3>Created by Eddie Rowe, <a href="https://github.com/EddieRowe/find-a-bench" target="_blank">hosted on GitHub.</a></h3>
       </div>
@@ -41,7 +42,7 @@
         }
 
         function error() {
-            loc.textContent = `Failed to get your location.`;
+            loc.textContent = `Failed to get your location! \nDoes your device have location enabled? \nDid you allow this site permission?`;
         }
 
         function success(position) {

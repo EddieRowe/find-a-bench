@@ -10,4 +10,3 @@ ___
 Todo:
 - Mobile-first formatting
 - Searchable areas
-- Click to open directions to a selected bench

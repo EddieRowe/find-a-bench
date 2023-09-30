@@ -12,12 +12,15 @@
       <div id="main">
         <h1>Find-A-Bench</h1>
         <h2>For weary travellers who need <i>a rest.</i></h2>
+        <br>
+        <p id="loc">Requesting your location...</p>
+        <p id="benchless"></p>
         <h3>Created by Eddie Rowe, <a href="https://github.com/EddieRowe/find-a-bench" target="_blank">hosted on GitHub.</a></h3>
       </div>
       <div id="map"></div>
 
       <script>
-        var map = new L.Map('map').setView(new L.LatLng(50.72556, -3.52695), 14);
+        var map = new L.Map('map').setView(new L.LatLng(50.72556, -3.52695), 3);
 
         var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
         var esri = new L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles © Esri'});
@@ -30,7 +33,27 @@
         var layerControls = L.control.layers(baseMaps, null);
         layerControls.addTo(map);
 
-        (async () => {
+
+        if (!navigator.geolocation) {
+            loc.textContent = `Location not supported by browser.`;
+        } else {
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+        function error() {
+            loc.textContent = `Failed to get your location.`;
+        }
+
+        function success(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            loc.textContent = `Your location: ${lat}, ${lon}`;
+            map.setView(new L.LatLng(lat, lon), 14);
+            getBenches(lat, lon);
+        }
+
+        async function getBenches(lat, lon){
             const api = await fetch('https://www.overpass-api.de/api/interpreter?', {
                 method: 'POST',
                 headers: {
@@ -38,10 +61,14 @@
                     'Content-Type': 'application/json'
                 },
                 body:
-                "[out:json];area[name='Exeter'];nwr[amenity=bench](area);out center;"
+                `[out:json];node(around:1000.0,${lat},${lon})[amenity=bench];out center;`
             });
 
             const result = await api.json();
+
+            if(result.elements.length == 0){
+                benchless.textContent = "There are no mapped benches within 1km of your location. :(";
+            }
 
             result.elements.forEach(element => {
                 L.marker([element.lat, element.lon]).addTo(map)
@@ -52,7 +79,7 @@
                     '<br><a href="https://www.openstreetmap.org/directions?from=&to=' + element.lat + '%2C' + element.lon + '#map=17/' + element.lat + '/' + element.lon + '" target="_blank">OSM Directions</a>'
                 );
             });
-        })()
+        }
       </script>
     
 </body>

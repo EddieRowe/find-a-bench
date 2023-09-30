@@ -10,4 +10,3 @@ ___
 Todo:
 - Mobile-first formatting (CSS & number of markers)
 - Searchable areas
-- Get location fails on mobile

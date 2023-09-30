@@ -12,7 +12,7 @@
       <div id="main">
         <h1>Find-A-Bench</h1>
         <h2>For weary travellers who need <i>a rest.</i></h2>
-        <h3>Created by Eddie Rowe, <a href="https://github.com/EddieRowe/find-a-bench">hosted on GitHub.</a></h3>
+        <h3>Created by Eddie Rowe, <a href="https://github.com/EddieRowe/find-a-bench" target="_blank">hosted on GitHub.</a></h3>
       </div>
       <div id="map"></div>
 
@@ -45,7 +45,12 @@
 
             result.elements.forEach(element => {
                 L.marker([element.lat, element.lon]).addTo(map)
-                .bindPopup('Bench!<br>' + element.lat + ', ' + element.lon);
+                .bindPopup(
+                    'Bench!<br>' 
+                    + element.lat + ', ' + element.lon +
+                    '<br><a href="https://www.google.co.uk/maps/dir//' + element.lat + ',' + element.lon + '" target="_blank">Google Maps Directions</a>' +
+                    '<br><a href="https://www.openstreetmap.org/directions?from=&to=' + element.lat + '%2C' + element.lon + '" target="_blank">OSM Directions</a>'
+                );
             });
         })()
       </script>

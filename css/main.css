@@ -65,11 +65,11 @@
         flex-direction: row;
       }
       #map { 
-        width: 50%;
+        width: 65%;
         height: 100%;
       }
       #main {
-        width: 50%;
+        width: 35%;
         height: 100%;
 
         h1 {
@@ -91,6 +91,9 @@
         p {
             margin-top: -2em;
             font-size: 1em;
+        }
+        #benchless {
+          margin-bottom: 5px;
         }
       }
   }

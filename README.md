@@ -7,5 +7,16 @@
 ### [Live Demo](https://eddierowe.github.io/find-a-bench/)
 
 ___
-Todo:
-- Mobile-first formatting (CSS & number of markers)
+
+## FAQ
+> Q: Why do I keep getting the error "Failed to get your location!"?
+
+A: This could be due to not allowing your browser permission to access your location. If you are on mobile you may need to make sure you have Location turned on in your settings.
+
+> Q: Why are no benches being shown near me? I know there are some!
+
+A: Bench data is fetched from OpenStreetMap's [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) - if something is missing you can [add it to OpenStreetMap.](https://wiki.openstreetmap.org/wiki/Contribute_map_data)
+
+___
+## Todo:
+- Improve mobile formatting (CSS & number of markers)

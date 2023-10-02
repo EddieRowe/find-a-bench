@@ -1,4 +1,8 @@
 # find-a-bench
+![GitHub](https://img.shields.io/github/license/EddieRowe/find-a-bench)
+![Build](https://img.shields.io/github/actions/workflow/status/EddieRowe/find-a-bench/pages/pages-build-deployment)
+![GitHub language count](https://img.shields.io/github/languages/count/EddieRowe/find-a-bench)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/EddieRowe/find-a-bench/main)
 
 ## Displays your nearest benches as markers on a map - once clicked they can open directions via Google Maps or OSM.
 

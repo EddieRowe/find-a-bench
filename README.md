@@ -9,4 +9,3 @@
 ___
 Todo:
 - Mobile-first formatting (CSS & number of markers)
-- Searchable areas

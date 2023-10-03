@@ -17,7 +17,7 @@ function placeCircle(lat, lon, colour){
 function placeMarkers(result){
     result.elements.forEach(element => {
         markers.push(
-            L.marker([element.lat, element.lon]).addTo(map)
+            L.marker([element.lat, element.lon], {alt: `Bench at latitude ${element.lat}, longitude ${element.lon}.`}).addTo(map)
             .bindPopup(
             'Bench!<br>' 
             + element.lat + ', ' + element.lon +

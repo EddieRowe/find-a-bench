@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find-A-Bench</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
     <link rel="stylesheet" href="css/main.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>   
 </head>
 <body>
       <div id="main">
@@ -17,91 +21,10 @@
         <p id="manual-info"><br>You can also right-click (or tap & hold) the map to search.</p>
         <h3>Created by Eddie Rowe, <a href="https://github.com/EddieRowe/find-a-bench" target="_blank">hosted on GitHub.</a></h3>
       </div>
-      <div id="map"></div>
+      <div id="map"></div>  
 
-      <script>
-        var map = new L.Map('map').setView(new L.LatLng(50.72556, -3.52695), 3);
-        var markers = new Array();
-
-        var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-        var esri = new L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles © Esri'});
-      
-        var baseMaps = {
-            "OSM Map View": osm,
-            "ESRI Satellite View": esri
-        };
-
-        var layerControls = L.control.layers(baseMaps, null);
-        layerControls.addTo(map);
-
-
-        if (!navigator.geolocation) {
-            loc.textContent = `Location not supported by browser.`;
-        } else {
-            navigator.geolocation.getCurrentPosition(success, error);
-        }
-
-        map.on("contextmenu", function (event) {
-            loc.textContent = `Chosen location: ${event.latlng.lat}, ${event.latlng.lng}`;
-            map.setView(new L.LatLng(event.latlng.lat, event.latlng.lng), 14);
-            getBenchesByCoordinates(event.latlng.lat, event.latlng.lng);
-        });
-
-        function error() {
-            loc.textContent = `Failed to get your location! \nDoes your device have location enabled? \nDid you allow this site permission?`;
-        }
-
-        function success(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            loc.textContent = `Your location: ${lat}, ${lon}`;
-            map.setView(new L.LatLng(lat, lon), 14);
-            getBenchesByCoordinates(lat, lon);
-        }
-
-        function removeMarkers(){
-            for(i=0; i<markers.length; i++) {
-                map.removeLayer(markers[i]);
-            }  
-        }
-
-        async function getBenchesByCoordinates(lat, lon){
-            removeMarkers();
-            const api = await fetch('https://www.overpass-api.de/api/interpreter?', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body:
-                `[out:json][timeout:25];node(around:1000.0,${lat},${lon})[amenity=bench];out center;`
-            });
-
-            const result = await api.json();
-
-            if(result.elements.length == 0){
-                benchless.textContent = "There are no mapped benches within 1km of this location. :(";
-            }else{
-                benchless.textContent = "";
-                placeMarkers(result);
-            }     
-        }
-
-        function placeMarkers(result){
-            result.elements.forEach(element => {
-                markers.push(
-                    L.marker([element.lat, element.lon]).addTo(map)
-                    .bindPopup(
-                    'Bench!<br>' 
-                    + element.lat + ', ' + element.lon +
-                    '<br><a href="https://www.google.co.uk/maps/dir//' + element.lat + ',' + element.lon + '" target="_blank">Google Maps Directions</a>' +
-                    '<br><a href="https://www.openstreetmap.org/directions?from=&to=' + element.lat + '%2C' + element.lon + '#map=17/' + element.lat + '/' + element.lon + '" target="_blank">OSM Directions</a>'
-                )
-                );
-            });
-        }
-      </script>
-    
+      <script src="js/markers.js"></script>
+      <script src="js/api.js"></script>
+      <script src="js/main.js"></script>
 </body>
 </html>

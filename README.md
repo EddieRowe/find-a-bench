@@ -10,7 +10,7 @@
 ### Continuous integration tests using Jest. 
 ### Continuous deployment via GitHub Actions.
 
-### [Live Demo](https://eddierowe.github.io/find-a-bench/)
+### [Live Demo](https://find-a-bench.com)
 
 ___
 

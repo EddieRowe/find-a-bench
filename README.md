@@ -1,12 +1,14 @@
 # find-a-bench
 ![GitHub](https://img.shields.io/github/license/EddieRowe/find-a-bench)
+[![codecov](https://codecov.io/gh/EddieRowe/find-a-bench/graph/badge.svg?token=FCA47IZUY7)](https://codecov.io/gh/EddieRowe/find-a-bench)
 ![Build](https://img.shields.io/github/actions/workflow/status/EddieRowe/find-a-bench/pages/pages-build-deployment)
-![GitHub language count](https://img.shields.io/github/languages/count/EddieRowe/find-a-bench)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/EddieRowe/find-a-bench/main)
 
 ## Displays your nearest benches as markers on a map - once clicked they can open directions via Google Maps or OSM.
 
-### Created with JavaScript, HTML, CSS, Leaflet.js, and the Overpass API. Continuously deployed via GitHub Actions.
+### Created with JavaScript, HTML, CSS, Leaflet.js, and the Overpass API. 
+### Continuous integration tests using Jest. 
+### Continuous deployment via GitHub Actions.
 
 ### [Live Demo](https://eddierowe.github.io/find-a-bench/)
 
@@ -23,4 +25,4 @@ A: Bench data is fetched from OpenStreetMap's [Overpass API](https://wiki.openst
 
 ___
 ## Todo:
-- Improve mobile formatting (CSS & number of markers)
+- Improve formatting on desktop & mobile.

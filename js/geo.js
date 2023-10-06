@@ -17,5 +17,5 @@ async function geoSuccess(position) {
     setTextContent(loc, `Your location: ${lat}, ${lon}`);
     map.setView(new L.LatLng(lat, lon), 14);
     removeMarkers(map, markers); 
-    handleResult(await getBenchesByCoordinates(lat, lon), lat, lon); 
+    handleResult(await getBenchesByCoordinates(lat, lon, searchRadius), lat, lon); 
 }

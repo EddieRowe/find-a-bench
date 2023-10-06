@@ -18,8 +18,7 @@ getGeoLocation();
 // Right-click / long tap
 map.on("contextmenu", async function (event) {
     setTextContent(loc, `Chosen location: ${event.latlng.lat}, ${event.latlng.lng}`)
-    //setLocText(`Chosen location: ${event.latlng.lat}, ${event.latlng.lng}`);
     map.setView(new L.LatLng(event.latlng.lat, event.latlng.lng), 14);
     removeMarkers(map, markers);
-    handleResult(await getBenchesByCoordinates(event.latlng.lat, event.latlng.lng), event.latlng.lat, event.latlng.lng);  
+    handleResult(await getBenchesByCoordinates(event.latlng.lat, event.latlng.lng, searchRadius), event.latlng.lat, event.latlng.lng);  
 });

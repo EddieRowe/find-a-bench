@@ -1,10 +1,10 @@
-function removeMarkers(){
-    for(i=0; i<markers.length; i++) {
+function removeMarkers(map, markers){
+    for(i = 0; i < markers.length; i++) {
         map.removeLayer(markers[i]);
     }  
 }
 
-function placeCircle(lat, lon, colour){
+function placeCircle(lat, lon, colour, markers){
     var circle = L.circle([lat, lon], {
         color: colour,
         fillColor: colour,
@@ -27,13 +27,4 @@ function placeMarkers(result){
     });
 }
 
-function handleResult(result, lat, lon){
-    if(result.elements.length == 0){
-        benchless.textContent = `There are no mapped benches within ${searchRadius}m. :(`;
-        placeCircle(lat, lon, "red");
-    }else{
-        benchless.textContent = "";
-        placeMarkers(result);
-        placeCircle(lat, lon, "green");
-    } 
-}
+module.exports = { removeMarkers: removeMarkers };

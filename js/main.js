@@ -13,14 +13,13 @@ var baseMaps = {
 var layerControls = L.control.layers(baseMaps, null);
 layerControls.addTo(map);
 
-if (!navigator.geolocation) {
-    loc.textContent = `Location not supported by browser.`;
-} else {
-    navigator.geolocation.getCurrentPosition(success, error);
-}
+getGeoLocation();
 
 // Right-click / long tap
-map.on("contextmenu", function (event) {
-    loc.textContent = `Chosen location: ${event.latlng.lat}, ${event.latlng.lng}`;
-    getBenchesByCoordinates(event.latlng.lat, event.latlng.lng);
+map.on("contextmenu", async function (event) {
+    setTextContent(loc, `Chosen location: ${event.latlng.lat}, ${event.latlng.lng}`)
+    //setLocText(`Chosen location: ${event.latlng.lat}, ${event.latlng.lng}`);
+    map.setView(new L.LatLng(event.latlng.lat, event.latlng.lng), 14);
+    removeMarkers(map, markers);
+    handleResult(await getBenchesByCoordinates(event.latlng.lat, event.latlng.lng), event.latlng.lat, event.latlng.lng);  
 });

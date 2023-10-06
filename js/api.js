@@ -1,4 +1,4 @@
-async function getBenchesByCoordinates(lat, lon){
+async function getBenchesByCoordinates(lat, lon, searchRadius){
     const api = await fetch('https://www.overpass-api.de/api/interpreter?', {
         method: 'POST',
         headers: {
@@ -11,3 +11,5 @@ async function getBenchesByCoordinates(lat, lon){
 
     return await api.json();
 }
+
+module.exports = { getBenchesByCoordinates: getBenchesByCoordinates };

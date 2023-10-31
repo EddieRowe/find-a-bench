@@ -26,3 +26,4 @@ A: Bench data is fetched from OpenStreetMap's [Overpass API](https://wiki.openst
 ___
 ## Todo:
 - Improve formatting on desktop & mobile.
+- Improve test coverage.

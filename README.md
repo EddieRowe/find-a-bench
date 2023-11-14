@@ -12,12 +12,14 @@
 
 ### [Live Demo](https://find-a-bench.com)
 
+![Screenshot of find-a-bench](https://eddierowe.com/assets/githubresources/find-a-bench/find-a-bench_screenshot02.png)
+
 ___
 
 ## FAQ
 > Q: Why do I keep getting the error "Failed to get your location!"?
 
-A: This could be due to not allowing your browser permission to access your location. If you are on mobile you may need to make sure you have Location turned on in your settings.
+A: This could be due to not allowing your browser permission to access your location. If you are on mobile you may need to make sure you have Location turned on in your settings. Alternatively you can manually search the map by right-clicking (or tap & hold on mobile devices).
 
 > Q: Why are no benches being shown near me? I know there are some!
 
